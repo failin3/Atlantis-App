@@ -6,8 +6,8 @@ android {
     defaultConfig {
         applicationId "com.tenf.atlantis"
         minSdkVersion 15
-        versionCode 11
-        versionName "1.5-s"
+        versionCode 12
+        versionName "1.5b-s"
     }
     buildTypes {
         release {

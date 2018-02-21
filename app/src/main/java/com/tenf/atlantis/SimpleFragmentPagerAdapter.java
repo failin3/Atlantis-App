@@ -29,6 +29,8 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
         if (position == 0) {
             return new MainFragment();
         } else if (position == 1) {
+            return new TaakjesFragment();
+        } else if (position == 2) {
             return new BierFragment();
         } else {
             return new StreepFragment();
@@ -38,7 +40,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     // This determines the number of tabs
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 
     // This determines the title for each tab
@@ -47,10 +49,12 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
         // Generate title based on item position
         switch (position) {
             case 0:
-                return "Hoofdpagina";
+                return "Home";
             case 1:
-                return "Bier";
+                return "Taakjes";
             case 2:
+                return "Bier";
+            case 3:
                 return "Streepjes";
             default:
                 return null;
