@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
             alarmTime = calendar.getTimeInMillis();
         }
         am.setRepeating(am.RTC_WAKEUP, alarmTime, am.INTERVAL_DAY*7, pendingIntent);
-        calendar.clear();
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
         calendar.set(Calendar.HOUR_OF_DAY, 23);
         calendar.set(Calendar.MINUTE, 0);
@@ -98,10 +97,28 @@ public class MainActivity extends AppCompatActivity {
                 case KeyEvent.KEYCODE_BACK:
                     if (tabLayout.getSelectedTabPosition() == 0) {
                         Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
-                        ((MainFragment) fragment).goBack();
-                    } else {
+                        boolean canGoBack = ((MainFragment) fragment).canGoBack();
+                        if(canGoBack) {
+                            ((MainFragment) fragment).goBack();
+                        } else {
+                            finish();
+                        }
+                    } else if (tabLayout.getSelectedTabPosition() == 1) {
                         Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
-                        ((BierFragment) fragment).goBack();
+                        boolean canGoBack = ((BierFragment) fragment).canGoBack();
+                        if(canGoBack) {
+                            ((BierFragment) fragment).goBack();
+                        } else {
+                            finish();
+                        }
+                    } else if (tabLayout.getSelectedTabPosition() == 2) {
+                        Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
+                        boolean canGoBack = ((StreepFragment) fragment).canGoBack();
+                        if(canGoBack) {
+                            ((StreepFragment) fragment).goBack();
+                        } else {
+                            finish();
+                        }
                     }
                     return true;
             }
@@ -116,9 +133,12 @@ public class MainActivity extends AppCompatActivity {
             if (tabLayout.getSelectedTabPosition() == 0) {
                 Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
                 ((MainFragment) fragment).refresh();
-            } else {
+            } else if (tabLayout.getSelectedTabPosition() == 1) {
                 Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
                 ((BierFragment) fragment).refresh();
+            } else if (tabLayout.getSelectedTabPosition() == 2) {
+                Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
+                ((StreepFragment) fragment).refresh();
             }
             final WebView WebView = (WebView)findViewById(R.id.webView);
 

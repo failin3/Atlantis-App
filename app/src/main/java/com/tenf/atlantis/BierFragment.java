@@ -65,4 +65,8 @@ public class BierFragment extends Fragment {
         });
     }
 
+    public boolean canGoBack() {
+        return WebView.canGoBack();
+    }
+
 }
