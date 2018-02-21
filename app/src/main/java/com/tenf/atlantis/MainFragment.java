@@ -39,7 +39,7 @@ public class MainFragment extends Fragment {
         return view;
     }
 
-    public void mainKeyDown(int key_code) {
+    public void goBack() {
         if (WebView.canGoBack()) {
             WebView.goBack();
         }

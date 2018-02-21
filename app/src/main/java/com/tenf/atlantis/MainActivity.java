@@ -45,13 +45,48 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        setNotification(18, 1, "Check of het vuilnis al buiten staat");
-        setNotification(23, 2, "Laatste kans om het vuilnis buiten te zetten");
+        String message = "Check of het vuilnis al buiten staat";
+        String message2 = "Laatste kans om het vuilnis buiten te zetten";
 
+        setNotification(13, 44,1, message);
+        setNotification(13, 46,2, message2);
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
 
+        Intent intent = new Intent(MainActivity.this, Receiver.class);
+        intent.putExtra("text", message);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, intent, PendingIntent.FLAG_ONE_SHOT);
 
+        AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
+        if(calendar.getTimeInMillis() < System.currentTimeMillis()) {
+            alarmTime = calendar.getTimeInMillis()+ (am.INTERVAL_DAY*7);
+        } else {
+            alarmTime = calendar.getTimeInMillis();
+        }
+        am.setRepeating(am.RTC_WAKEUP, alarmTime, am.INTERVAL_DAY*7, pendingIntent);
+        calendar.clear();
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+
+        Intent intent2 = new Intent(MainActivity.this, Receiver.class);
+        intent2.putExtra("text", message2);
+        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(MainActivity.this, 2, intent2, PendingIntent.FLAG_ONE_SHOT);
+
+        if(calendar.getTimeInMillis() < System.currentTimeMillis()) {
+            alarmTime = calendar.getTimeInMillis()+ (am.INTERVAL_DAY*7);
+        } else {
+            alarmTime = calendar.getTimeInMillis();
+        }
+        am.setRepeating(am.RTC_WAKEUP, alarmTime, am.INTERVAL_DAY*7, pendingIntent2);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -64,7 +99,14 @@ public class MainActivity extends AppCompatActivity {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             switch (keyCode) {
                 case KeyEvent.KEYCODE_BACK:
-
+                    if (tabLayout.getSelectedTabPosition() == 0) {
+                        Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
+                        ((MainFragment) fragment).goBack();
+                    } else {
+                        Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
+                        ((BierFragment) fragment).goBack();
+                    }
+                    return true;
             }
 
         }
@@ -89,12 +131,12 @@ public class MainActivity extends AppCompatActivity {
             return super.onOptionsItemSelected(item);
         }
     }
-    public void setNotification(int hours, int reqCode, String message) {
+    public void setNotification(int hours, int minutes, int reqCode, String message) {
         PendingIntent pendingIntent;
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
         calendar.set(Calendar.HOUR_OF_DAY, hours);
-        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.MINUTE, minutes);
         calendar.set(Calendar.SECOND, 0);
 
         if(reqCode == 1) {

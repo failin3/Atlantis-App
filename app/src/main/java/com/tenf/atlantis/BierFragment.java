@@ -47,6 +47,12 @@ public class BierFragment extends Fragment {
         return view;
     }
 
+    public void goBack() {
+        if (WebView.canGoBack()) {
+            WebView.goBack();
+        }
+    }
+
     public void refresh() {
         progressBar.setVisibility(View.VISIBLE);
         WebView.setVisibility(View.GONE);
