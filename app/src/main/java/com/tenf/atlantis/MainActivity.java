@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         viewpager.setAdapter(adapter);
         tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewpager);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -103,23 +104,23 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             finish();
                         }
+                    } else if (tabLayout.getSelectedTabPosition() == 1) {
+                        Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
+                        boolean canGoBack = ((ShoppingFragment) fragment).canGoBack();
+                        if(canGoBack) {
+                            ((ShoppingFragment) fragment).goBack();
+                        } else {
+                            finish();
+                        }
                     } else if (tabLayout.getSelectedTabPosition() == 2) {
                         Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
-                        boolean canGoBack = ((BierFragment) fragment).canGoBack();
+                        boolean canGoBack = ((AanbiedingsFragment) fragment).canGoBack();
                         if(canGoBack) {
-                            ((BierFragment) fragment).goBack();
+                            ((AanbiedingsFragment) fragment).goBack();
                         } else {
                             finish();
                         }
                     } else if (tabLayout.getSelectedTabPosition() == 3) {
-                        Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
-                        boolean canGoBack = ((StreepFragment) fragment).canGoBack();
-                        if(canGoBack) {
-                            ((StreepFragment) fragment).goBack();
-                        } else {
-                            finish();
-                        }
-                    } else if (tabLayout.getSelectedTabPosition() == 1) {
                         Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
                         boolean canGoBack = ((TaakjesFragment) fragment).canGoBack();
                         if (canGoBack) {
@@ -127,7 +128,24 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             finish();
                         }
+                    } else if (tabLayout.getSelectedTabPosition() == 4) {
+                        Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
+                        boolean canGoBack = ((BierFragment) fragment).canGoBack();
+                        if (canGoBack) {
+                            ((BierFragment) fragment).goBack();
+                        } else {
+                            finish();
+                        }
+                    } else if (tabLayout.getSelectedTabPosition() == 5) {
+                        Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
+                        boolean canGoBack = ((StreepFragment) fragment).canGoBack();
+                        if (canGoBack) {
+                            ((StreepFragment) fragment).goBack();
+                        } else {
+                            finish();
+                        }
                     }
+
                     return true;
             }
 
@@ -141,15 +159,21 @@ public class MainActivity extends AppCompatActivity {
             if (tabLayout.getSelectedTabPosition() == 0) {
                 Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
                 ((MainFragment) fragment).refresh();
-            } else if (tabLayout.getSelectedTabPosition() == 2) {
-                Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
-                ((BierFragment) fragment).refresh();
-            } else if (tabLayout.getSelectedTabPosition() == 3) {
-                Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
-                ((StreepFragment) fragment).refresh();
             } else if (tabLayout.getSelectedTabPosition() == 1) {
                 Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
+                ((ShoppingFragment) fragment).refresh();
+            } else if (tabLayout.getSelectedTabPosition() == 2) {
+                Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
+                ((AanbiedingsFragment) fragment).refresh();
+            } else if (tabLayout.getSelectedTabPosition() == 3) {
+                Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
                 ((TaakjesFragment) fragment).refresh();
+            } else if (tabLayout.getSelectedTabPosition() == 4) {
+                Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
+                ((BierFragment) fragment).refresh();
+            } else if (tabLayout.getSelectedTabPosition() == 5) {
+                Fragment fragment = adapter.getRegisteredFragment(tabLayout.getSelectedTabPosition());
+                ((StreepFragment) fragment).refresh();
             }
             final WebView WebView = (WebView)findViewById(R.id.webView);
 
