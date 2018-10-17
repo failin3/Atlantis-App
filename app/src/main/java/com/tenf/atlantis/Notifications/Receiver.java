@@ -1,4 +1,4 @@
-package com.tenf.atlantis;
+package com.tenf.atlantis.Notifications;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -8,6 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
+import com.tenf.atlantis.MainActivity;
+import com.tenf.atlantis.R;
 
 /**
  * Created by Felix on 8-1-2018.

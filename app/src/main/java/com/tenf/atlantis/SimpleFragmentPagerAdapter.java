@@ -55,7 +55,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return "Home";
             case 1:
-                return "Boodschappen";
+                return "lijst";
             case 2:
                 return "Aanbiedingen";
             case 3:

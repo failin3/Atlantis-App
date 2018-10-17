@@ -1,22 +1,21 @@
 package com.tenf.atlantis;
 
 import android.app.AlarmManager;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
+
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.tenf.atlantis.Notifications.Receiver;
 
 import java.util.Calendar;
 
@@ -36,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ViewPager viewpager = (ViewPager) findViewById(R.id.viewpager);
+
+        //Add client to topic, this way we can send push notifications to this client
+        FirebaseMessaging.getInstance().subscribeToTopic("boodschappen");
 
         adapter = new SimpleFragmentPagerAdapter(this, getSupportFragmentManager());
         viewpager.setAdapter(adapter);
