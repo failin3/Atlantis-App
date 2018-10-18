@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:key="pref_notif_boodschappen"
+        android:summary="Krijg een bericht wanneer er spullen op zijn."
+        android:title="Boodschappen"
+        android:defaultValue="true"/>
+    <CheckBoxPreference
+        android:key="pref_notif_taakjes"
+        android:summary="Krijg een melding wanneer je je taakje moet doen."
+        android:title="Taakjes"
+        android:defaultValue="true"/>
+    <CheckBoxPreference
+        android:key="pref_notif_vuilnis"
+        android:summary="Krijg een melding wanneer de vuilnisbakken naar buiten moeten."
+        android:title="Vuilnisbakken"
+        android:defaultValue="true"/>
+</PreferenceScreen>

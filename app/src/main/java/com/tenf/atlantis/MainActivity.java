@@ -3,6 +3,8 @@ package com.tenf.atlantis;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -16,6 +18,7 @@ import android.webkit.WebView;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.tenf.atlantis.Notifications.Receiver;
+import com.tenf.atlantis.Settings.SettingsActivity;
 
 import java.util.Calendar;
 
@@ -37,7 +40,14 @@ public class MainActivity extends AppCompatActivity {
         ViewPager viewpager = (ViewPager) findViewById(R.id.viewpager);
 
         //Add client to topic, this way we can send push notifications to this client
-        FirebaseMessaging.getInstance().subscribeToTopic("boodschappen");
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        if(sharedPref.getBoolean("pref_notif_boodschappen", true)) {
+            FirebaseMessaging.getInstance().subscribeToTopic("boodschappen");
+        }
+        if(sharedPref.getBoolean("pref_notif_taakjes", true)) {
+            FirebaseMessaging.getInstance().subscribeToTopic("boodschappen");
+        }
+
 
         adapter = new SimpleFragmentPagerAdapter(this, getSupportFragmentManager());
         viewpager.setAdapter(adapter);
@@ -179,6 +189,11 @@ public class MainActivity extends AppCompatActivity {
             }
             final WebView WebView = (WebView)findViewById(R.id.webView);
 
+            return true;
+        }
+        else if(item.getItemId() == R.id.preferences) {
+            Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(myIntent);
             return true;
         }
         else {

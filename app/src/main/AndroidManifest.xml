@@ -3,8 +3,8 @@
     package="com.tenf.atlantis">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>﻿
-
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    ﻿
     <application
         android:allowBackup="true"
         android:icon="@mipmap/atlantis"
@@ -25,9 +25,17 @@
             </intent-filter>
         </service>
         <!-- [END firebase_service] -->
-        <receiver android:name="com.tenf.atlantis.Notifications.Receiver"></receiver>
+        <receiver android:name=".Notifications.Receiver" />
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
+
+        <activity
+            android:name=".Settings.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/SettingsTheme"
+            android:parentActivityName=".MainActivity" />
     </application>
+
 </manifest>

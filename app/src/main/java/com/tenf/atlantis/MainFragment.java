@@ -1,6 +1,7 @@
 package com.tenf.atlantis;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,7 +14,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-
 public class MainFragment extends Fragment {
     private static String url = "https://pot-atlantis.000webhostapp.com/indexmobile.php";
     WebView WebView;
@@ -25,6 +25,8 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_main, container, false);
         WebView = (WebView) view.findViewById(R.id.webView);
+
+
         WebSettings webSettings = WebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
