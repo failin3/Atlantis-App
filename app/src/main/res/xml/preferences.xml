@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <ListPreference
+        android:key="pref_user_names"
+        android:title="Kies een gebruiker"
+        android:summary="%s"
+        android:entries="@array/pref_user_names"
+        android:entryValues="@array/pref_user_names_values"
+        android:defaultValue="0" />
     <CheckBoxPreference
         android:key="pref_notif_boodschappen"
         android:summary="Krijg een bericht wanneer er spullen op zijn."
         android:title="Boodschappen"
-        android:defaultValue="true"/>
+        android:defaultValue="false"/>
     <CheckBoxPreference
         android:key="pref_notif_taakjes"
         android:summary="Krijg een melding wanneer je je taakje moet doen."
         android:title="Taakjes"
-        android:defaultValue="true"/>
+        android:defaultValue="false"/>
     <CheckBoxPreference
         android:key="pref_notif_vuilnis"
         android:summary="Krijg een melding wanneer de vuilnisbakken naar buiten moeten."
         android:title="Vuilnisbakken"
-        android:defaultValue="true"/>
+        android:defaultValue="false"/>
 </PreferenceScreen>

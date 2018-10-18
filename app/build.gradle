@@ -6,8 +6,8 @@ android {
     defaultConfig {
         applicationId "com.tenf.atlantis"
         minSdkVersion 15
-        versionCode 17
-        versionName "1.7b-i"
+        versionCode 18
+        versionName "1.8-i"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
